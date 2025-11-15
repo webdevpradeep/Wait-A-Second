@@ -1,0 +1,339 @@
+const body = document.querySelector('body');
+const audio = new Audio(linkmp3.src);
+let ftganti = 0,
+  fungsi = 0,
+  fungsiAwal = 0;
+const deffotostiker = fotostiker.src;
+
+Content.style = 'opacity:1;margin-top:35vh';
+
+let sudahKlik = true;
+document.getElementById('loveIn').onclick = function () {
+  if (sudahKlik) {
+    if (fungsiAwal == 0) {
+      audio.play();
+      fungsiAwal = 1;
+      loveIn.style = 'transition:all .8s ease;transform:scale(15);opacity:0';
+      wallpaper.style = 'transform: scale(1.5);';
+      ket.style = 'display:none';
+      setTimeout(initMiddle, 300);
+      setTimeout(initMessage, 500);
+    }
+  } else {
+    sudahKlik = true; // Mark that the button has been clicked
+    document.getElementById('loveIn').innerHTML =
+      '<a href="#" class="lovein">&#10084;</a>';
+  }
+};
+
+async function initMessage() {
+  vketikhalo = 'Hey You ✨';
+  startName();
+}
+
+function initMiddle() {
+  loveIn.style = 'display:none';
+  ket.style = 'display:none';
+  Content.style = 'opacity:1;margin-top:30px';
+  bodyblur.style = 'opacity:.1';
+  wallpaper.style = 'transform: scale(1.5);';
+}
+
+async function startName() {
+  bodyblur.style = 'opacity:.1';
+  wallpaper.style = 'transform: scale(1);';
+  fotostiker.style = 'display:inline-flex;';
+  setTimeout(showSticker, 200);
+  setTimeout(showHello, 500);
+}
+
+function showSticker() {
+  if (ftganti == 0) fotostiker.src = deffotostiker;
+  else if (ftganti == 1) fotostiker.src = fotostiker1.src;
+  else if (ftganti == 2) fotostiker.src = fotostiker2.src;
+  else if (ftganti == 3) fotostiker.src = fotostiker3.src;
+  else if (ftganti == 4) fotostiker.src = fotostiker4.src;
+  else if (ftganti == 5) fotostiker.src = fotostiker5.src;
+  else if (ftganti == 6) fotostiker.src = fotostiker6.src;
+  fotostiker.style = 'display:inline-flex;opacity:1;transform:scale(1)';
+}
+
+function hideSticker() {
+  fotostiker.style =
+    'display:inline-flex;opacity:1;transition:all .7s ease;transform:scale(.1)';
+}
+
+function showQuote() {
+  bq.style =
+    'position:relative;opacity:1;visibility:visible;transform: scale(1);margin-top:0';
+  startTyping1();
+  fungsi = 1;
+}
+
+function showHello() {
+  new TypeIt('#halo', {
+    strings: ['' + vketikhalo],
+    startDelay: 50,
+    speed: 30,
+    waitUntilVisible: true,
+    afterComplete: function () {
+      halo.innerHTML = vketikhalo;
+      setTimeout(showQuote, 200);
+    },
+  }).go();
+}
+
+async function goToWhatsApp() {
+  await swals.fire('OK!', 'Send your answer to my WhatsApp, okay!', 'success');
+  window.location =
+    'https://api.whatsapp.com/send?phone=&text=' + pesanwhatsapp;
+}
+
+let vketik1 = kalimat.innerHTML;
+kalimat.innerHTML = '';
+kalimatb.innerHTML = '';
+
+function startTyping1() {
+  new TypeIt('#kalimat', {
+    strings: ['' + vketik1],
+    startDelay: 300,
+    speed: 20,
+    cursor: false,
+    deleteSpeed: 20,
+    breakLines: false,
+    waitUntilVisible: true,
+    lifelike: true,
+    afterComplete: function () {
+      activateOpsL();
+    },
+  }).go();
+}
+
+let opsLclick = 0,
+  opsLcheck = 0,
+  defopsL = opsL.innerHTML;
+
+document.getElementById('bq').onclick = function () {
+  if (opsLclick == 1) {
+    if (opsLcheck == 1) setTimeout(typeMessage1, 400);
+    if (opsLcheck == 2) startTyping2();
+    if (opsLcheck == 3) typeMessage4();
+    if (opsLcheck == 4) typeMessage5();
+    if (opsLcheck == 5) startTyping8();
+    opsL.style.opacity = '0';
+    opsLclick = 0;
+  }
+};
+
+function activateOpsL() {
+  opsL.innerHTML = defopsL;
+  opsL.style.opacity = '.8';
+  opsLclick = 1;
+  opsLcheck++;
+}
+
+function typeMessage1() {
+  kalimat.innerHTML = pesan1.innerHTML;
+  kolombaru.style = 'position:relative;opacity:1;transform:scale(1)';
+  lv1.style = 'transform:scale(1);transition:all .5s ease';
+}
+
+let vketik2 = pesan2.innerHTML,
+  vketik3 = pesan3.innerHTML;
+function startTyping2() {
+  wallpaper.style = 'transform: scale(1.5);';
+  kolombaru.style = '';
+  kalimat.innerHTML = '';
+  new TypeIt('#kalimat', {
+    strings: ['' + vketik2, '' + vketik3],
+    startDelay: 20,
+    speed: 32,
+    cursor: true,
+    deleteSpeed: 20,
+    breakLines: false,
+    waitUntilVisible: true,
+    lifelike: true,
+    afterComplete: function () {
+      kalimat.innerHTML = vketik3;
+      setTimeout(typeMessage4, 440);
+    },
+  }).go();
+}
+
+let vketik4 = pesan4.innerHTML;
+pesan4.innerHTML = '';
+function typeMessage4() {
+  kalimat.style = 'display:none';
+  wallpaper.style = 'transform: scale(1);';
+  hideSticker();
+  ftganti = 2;
+  setTimeout(showSticker, 300);
+  new TypeIt('#pesan4', {
+    strings: ['' + vketik4],
+    startDelay: 1,
+    speed: 34,
+    cursor: true,
+    waitUntilVisible: true,
+    lifelike: true,
+    afterComplete: function () {
+      pesan4.innerHTML = vketik4;
+      const countdownElem = document.getElementById('hitungan');
+      let countdownNum = parseInt(countdownElem.textContent);
+      const countdown = setInterval(() => {
+        countdownNum--;
+        countdownElem.textContent = countdownNum;
+        if (countdownNum <= 0) {
+          clearInterval(countdown);
+          setTimeout(typeMessage5, 800);
+        }
+      }, 1000);
+    },
+  }).go();
+}
+
+let vketik5 = pesan5.innerHTML;
+pesan5.innerHTML = '';
+function typeMessage5() {
+  pesan4.style = 'display:none';
+  wallpaper.style = 'transform: scale(1.5);';
+  hideSticker();
+  ftganti = 3;
+  setTimeout(showSticker, 300);
+  new TypeIt('#pesan5', {
+    strings: ['' + vketik5],
+    startDelay: 1,
+    speed: 34,
+    cursor: true,
+    waitUntilVisible: true,
+    lifelike: true,
+    afterComplete: function () {
+      pesan5.innerHTML = vketik5;
+      pesan5.style = 'transform:scale(1.3);transition:all .5s ease';
+      setTimeout(typeMessage6, 1200);
+    },
+  }).go();
+}
+
+let vketik6 = pesan6.innerHTML;
+pesan6.innerHTML = '';
+function typeMessage6() {
+  pesan5.style = 'display:none';
+  wallpaper.style = 'transform: scale(1);';
+  hideSticker();
+  ftganti = 4;
+  setTimeout(showSticker, 300);
+  new TypeIt('#pesan6', {
+    strings: ['' + vketik6],
+    startDelay: 1,
+    speed: 34,
+    cursor: true,
+    waitUntilVisible: true,
+    lifelike: true,
+    afterComplete: function () {
+      pesan6.innerHTML = vketik6;
+      setTimeout(typeMessage7, 1200);
+    },
+  }).go();
+}
+
+let vketik7 = pesan7.innerHTML;
+pesan7.innerHTML = '';
+function typeMessage7() {
+  pesan6.style = 'display:none';
+  wallpaper.style = 'transform: scale(1.5);';
+  hideSticker();
+  ftganti = 5;
+  setTimeout(showSticker, 300);
+  new TypeIt('#pesan7', {
+    strings: ['' + vketik7],
+    startDelay: 1,
+    speed: 34,
+    cursor: true,
+    waitUntilVisible: true,
+    lifelike: true,
+    afterComplete: function () {
+      pesan7.innerHTML = vketik7;
+      setTimeout(typeMessage8, 700);
+    },
+  }).go();
+}
+
+let vketik8 = pesan8.innerHTML;
+pesan8.innerHTML = '';
+function typeMessage8() {
+  wallpaper.style = 'transform: scale(1);';
+  hideSticker();
+  ftganti = 6;
+  setTimeout(showSticker, 300);
+  new TypeIt('#pesan8', {
+    strings: ['' + vketik8],
+    startDelay: 1,
+    speed: 34,
+    cursor: true,
+    waitUntilVisible: true,
+    lifelike: true,
+    afterComplete: function () {
+      pesan8.innerHTML = vketik8;
+      setInterval(fallHearts, 200);
+    },
+  }).go();
+}
+
+const loveElement = document.getElementById('lv1');
+let clickCount = 0,
+  currentScale = 1;
+loveElement.addEventListener('click', function () {
+  clickCount++;
+  loveElement.style.setProperty('--start-scale', currentScale);
+  loveElement.style.animation = 'shake-scale 1s ease-in-out';
+  currentScale += 0.5;
+  loveElement.style.transform = `scale(${currentScale})`;
+  setTimeout(() => (loveElement.style.animation = ''), 700);
+  if (clickCount === 3) {
+    kolombaru.style = 'position:relative;transform:scale(1)';
+    hideSticker();
+    ftganti = 1;
+    setTimeout(showSticker, 300);
+    startTyping2();
+    pesan1.style = 'opacity:0;transform:scale(0);transition:all .5s ease';
+    lv1.style = 'opacity:0;transform:scale(0);transition:all .5s ease';
+  }
+});
+
+// Final question variables
+const questionText = 'Do you miss me? 😶❤️';
+const questionPrompt = 'Come on, answer 😆';
+const positiveText = 'Miss';
+const negativeText = 'No';
+
+async function askQuestion() {
+  const { isConfirmed } = await swals.fire({
+    title: nama + ' ' + questionText,
+    text: questionPrompt,
+    imageUrl: fotostiker5.src,
+    showCancelButton: true,
+    confirmButtonText: positiveText,
+    cancelButtonText: negativeText,
+  });
+  if (isConfirmed) {
+    pesanwhatsapp = 'Yes ' + nama + ', I miss you too! ><';
+  } else {
+    pesanwhatsapp = nama + " doesn't miss you at all! :p";
+  }
+  goToWhatsApp();
+}
+
+function fallHearts() {
+  const heart = document.createElement('div');
+  heart.innerHTML =
+    "<svg class='line spin' style='opacity:.5;z-index:100' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g transform='translate(2.550170, 3.550158)'><path d='M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z'></path><path d='M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842'></path></g></svg>";
+  heart.className = 'heart-icon';
+  heart.style.left = Math.random() * 95 + 'vw';
+  heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+  document.body.appendChild(heart);
+}
+
+setInterval(() => {
+  const hearts = document.querySelectorAll('.heart-icon');
+  if (hearts.length > 100) hearts[0].remove();
+}, 100);
